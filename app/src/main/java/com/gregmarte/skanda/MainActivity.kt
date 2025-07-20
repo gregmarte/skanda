@@ -117,7 +117,7 @@ class MainActivity : ComponentActivity() {
                 // State for zoom and pan for the full-screen image
                 var scale by remember { mutableFloatStateOf(1f) }
                 var offset by remember { mutableStateOf(Offset.Zero) }
-                val fullScreenRotation by remember { mutableFloatStateOf(90f) }
+                var fullScreenRotation by remember { mutableFloatStateOf(90f) }
 
                 Box(
                     modifier = Modifier
@@ -127,7 +127,7 @@ class MainActivity : ComponentActivity() {
                             detectTransformGestures { centroid, pan, zoom, _rotation ->
                                 scale = (scale * zoom).coerceIn(0.5f, 5f)
                                 offset += pan * scale
-                                //fullScreenRotation += _rotation
+                                fullScreenRotation += _rotation
                             }
                         }
                         .pointerInput(Unit) {
